@@ -3,9 +3,6 @@ require "config.php"; // ← connexion PDO
 
 $id = $_GET["id"] ?? 0;
 
-// -----------------------------------------------------------
-// Récupération des données
-// -----------------------------------------------------------
 $req = $bdd->prepare("SELECT * FROM `100` WHERE id = ?");
 $req->execute([$id]);
 $donnees = $req->fetch();
@@ -17,9 +14,6 @@ if (!$donnees) {
 $erreurs = [];
 
 
-// -----------------------------------------------------------
-// Modification
-// -----------------------------------------------------------
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nom = $_POST["nom"];

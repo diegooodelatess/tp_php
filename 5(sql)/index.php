@@ -1,9 +1,7 @@
 <?php
 require "config.php";
 
-// -----------------------------------------------------------
-// Ajout d’un résultat
-// -----------------------------------------------------------
+
 $erreurs = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = $_POST["nom"];
@@ -22,9 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// -----------------------------------------------------------
-// Suppression d’un résultat
-// -----------------------------------------------------------
 if (isset($_GET['supprimer'])) {
     $id_suppr = $_GET['supprimer'];
     $req = $bdd->prepare("DELETE FROM `100` WHERE id = ?");
@@ -33,14 +28,8 @@ if (isset($_GET['supprimer'])) {
     exit;
 }
 
-// -----------------------------------------------------------
-// Liste des courses
-// -----------------------------------------------------------
 $courses = $bdd->query("SELECT DISTINCT course FROM `100`")->fetchAll(PDO::FETCH_COLUMN);
 
-// -----------------------------------------------------------
-// Gestion tri
-// -----------------------------------------------------------
 $colonnes_valides = ["nom","pays","course","temps"];
 $tri = $_GET["tri"] ?? "course";
 $ordre = $_GET["ordre"] ?? "asc";
@@ -48,8 +37,7 @@ $ordre = $_GET["ordre"] ?? "asc";
 if (!in_array($tri, $colonnes_valides)) $tri = "course";
 $ordre = strtolower($ordre) === "desc" ? "desc" : "asc";
 
-// -----------------------------------------------------------
-// Liste des résultats (recherche + tri)
+
 $mot = $_GET["recherche"] ?? "";
 
 if ($mot != "") {
@@ -63,9 +51,6 @@ if ($mot != "") {
 
 $resultats = $sql->fetchAll();
 
-// -----------------------------------------------------------
-// Fonction pour générer lien de tri avec flèche
-// -----------------------------------------------------------
 function lien_tri($colonne, $tri_courant, $ordre_courant, $mot) {
     $nouvel_ordre = "asc";
     $fleche = "";
