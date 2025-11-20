@@ -17,6 +17,6 @@ if (!isset($_SESSION['nom'])) {
 <?php
 } else {
     echo "<p><strong>bonjour : " . htmlspecialchars($_SESSION['nom']) . " !</strong></p>";
-    echo '<a href="changer_nom.php">supression de session</a>';
+    echo '<a href="supression_session.php">supression de session</a>';
 }
 ?>
