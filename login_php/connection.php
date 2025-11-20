@@ -17,6 +17,6 @@ if (!isset($_SESSION['nom'])) {
     <?php
 } else {
     echo "<p><strong>Votre nom est :" .($_SESSION['nom']) ."<strong></p>";
-    echo '<a href = "déconnection.php"> changer de nom</a>';
+    echo '<a href = "changer_nom.php"> changer de nom</a>';
 }
 ?>
